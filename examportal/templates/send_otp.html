@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel = "stylesheet" href= "{% static 'css/loginstyle.css' %}">
+    <title>Title</title>
+</head>
+<body>
+   <h4>Send OTP</h4>
+   <div class = "container">
+    <form method="post" action="{% url 'sendotp' %}">
+        {% csrf_token %}
+        <label for="username">Email:</label>
+        <input type="text" placeholder="Enter Email" name="email" required>
+        <br>
+         <br>
+        <button class="black-button" type="submit">Send OTP</button>
+    </form>
+   </div>
+</body>
+</html>

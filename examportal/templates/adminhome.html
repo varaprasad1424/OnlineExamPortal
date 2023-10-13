@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Online Exam Portal</title>
+    <link rel="stylesheet" href="{% static 'css/adminhomecss.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css" integrity="sha384-..." crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+    <style>
+        .dropdown-menu.pink-bg {
+            background-color: white;
+        }
+        .sidebar {
+  position: fixed;
+  top: 74px;
+  left: 0;
+  width: 200px;
+  height: 100vh;
+  background-color: purple;
+}
+    .sidebar h4 {
+      color: #ccc;
+      margin-top: 0;
+
+    }
+    .sidebar a {
+      color: #fff;
+      display: block;
+      width: 100%;
+      line-height: 60px;
+      text-decoration: none;
+      padding-left: 40px;
+      box-sizing: border-box;
+      transition: 0.5s;
+
+    }
+    .sidebar a:hover {
+      background:  #969696;
+      color:white;
+    }
+    .sidebar i {
+      padding-right: 10px;
+    }
+    label #sidebar_btn {
+      z-index: 1;
+      color: #fff;
+      position: fixed;
+      cursor: pointer;
+      left: 300px;
+      font-size: 20px;
+      margin: 5px 0;
+      transition: 0.5s;
+      transition-property: color;
+    }
+
+    label #sidebar_btn:hover {
+      color: #575757;
+    }
+
+    #check:checked~.sidebar {
+      left: -190px;
+    }
+
+    #check:checked~.sidebar a span {
+      display: none;
+    }
+
+    #check:checked~.sidebar a {
+      font-size: 20px;
+      margin-left: 170px;
+      width: 80px;
+    }
+
+    .content {
+      margin-left: 250px;
+      background: url(background.png) no-repeat;
+      background-position: center;
+      background-size: cover;
+      height: 100vh;
+      transition: 0.5s;
+    }
+
+    #check:checked~.content {
+      margin-left: 60px;
+    }
+
+    #check {
+      display: none;
+    }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'adminhome' %}">AMS Exam Portal</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'adminhome' %}">Home
+            <span class="visually-hidden">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">Student</a>
+          <div class="dropdown-menu pink-bg">
+            <a class="dropdown-item" href="{% url 'addstudent' %}">Add Student</a>
+            <a class="dropdown-item" href="{% url 'updatestudent' %}">Update Student</a>
+            <a class="dropdown-item" href="{% url 'deletestudent' %}">Delete Student</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">Faculty</a>
+          <div class="dropdown-menu pink-bg">
+            <a class="dropdown-item" href="{% url 'addfaculty' %}">Add Faculty</a>
+            <a class="dropdown-item" href="{% url 'updatefaculty' %}">Update Faculty</a>
+            <a class="dropdown-item" href="{% url 'deletefaculty' %}">Delete Faculty</a>
+          </div>
+        </li>
+           <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="" role="button" aria-haspopup="true" aria-expanded="false">Courses</a>
+          <div class="dropdown-menu pink-bg">
+            <a class="dropdown-item" href="{% url 'addcourse' %}">Add Courses</a>
+            <a class="dropdown-item" href="">Update Courses</a>
+            <a class="dropdown-item" href="{% url 'deletecourse' %}">Delete Courses</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="">FacultyCourseMapping</a>
+        </li>
+      </ul>
+    </div>
+    <form class="d-flex">
+        {% csrf_token %}
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">
+          <a href="{% url 'adminlogin' %}">Logout</a>
+        </button>
+      </form>
+  </div>
+</nav>
+  <div class="sidebar">
+    <a href="{% url 'admindashboard' %}"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a>
+    <a href="#"><i class="fas fa-question-circle"></i><span>Exams</span></a>
+    <a href='#'><i class="fas fa-user"></i><span>Profile</span></a>
+    <a href="{% url 'changepasswordadmin' %}"><i class="fas fa-lock"></i><span>Change Password</span></a>
+  </div>
+
+{% block 'body' %}
+
+<h1 align="center">Home Page</h1>
+
+{% endblock %}
+</body>
+</html>
